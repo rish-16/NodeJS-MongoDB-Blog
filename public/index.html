@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <title>Blog post</title>
+  </head>
+  <style>
+    body,
+    html {
+      height: 100%;
+      padding: 0;
+      margin: 0;
+      font-family: Avenir Next;
+    }
+
+    #title-box,
+    #desc-box,
+    #publish {
+      display: none;
+    }
+
+    #posts-area {
+      width: 50%;
+      height: auto;
+      margin: 0 auto;
+      background-color: #dfe6e9;
+      overflow: scroll;
+      text-align: center;
+    }
+
+    .post {
+      width: 95%;
+      height: 100px;
+      background-color: lightgray;
+      margin: 10px auto;
+      text-align: left;
+    }
+
+    .post-title {
+      font-weight: bold;
+      color: black;
+      padding: 10px;
+    }
+
+    .post-desc {
+      font-size: 14px;
+      color: gray;
+      padding: 0 10px;
+    }
+
+    .post-delete {
+      font-size: 13px;
+      font-weight: bold;
+      color: red;
+      padding: 0 10px;
+    }
+  </style>
+  <body>
+    <button id="new-post"><a href="/new-post">New +</a></button>
+    <br />
+    <div id="posts-area">
+      <h2>Posts</h2>
+    </div>
+  </body>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const newPost = document.getElementById("new-post");
+      const posts = document.getElementById("posts-area");
+
+      var Post = function(data) {
+        this._id = data["_id"];
+        this.title = data["title"];
+        this.desc = data["description"];
+        this.date = data["date"];
+      };
+
+      Post.prototype.render = function() {
+        var postBox = document.createElement("div");
+        postBox.classList += "post";
+
+        var titleNode = document.createElement("a");
+        titleNode.setAttribute("href", `/posts/${this._id}`);
+        titleNode.innerText = this.title;
+        titleNode.classList += "post-title";
+
+        var descNode = document.createElement("p");
+        descNode.innerText = this.desc;
+        descNode.classList += "post-desc";
+
+        var deleteNode = document.createElement("p");
+        deleteNode.innerText = "Delete";
+        deleteNode.classList = "post-delete";
+
+        postBox.appendChild(titleNode);
+        postBox.appendChild(descNode);
+        postBox.appendChild(deleteNode);
+
+        deleteNode.onclick = () => {
+          var settings = {
+            url: `/posts/${this._id}`,
+            method: "DELETE",
+            headers: {
+              "Content-Type": "application/json",
+              "Cache-Control": "no-cache",
+              "cache-control": "no-cache"
+            }
+          };
+
+          $.ajax(settings).done(function(response) {
+            console.log(response);
+            window.location = "/home";
+          });
+        };
+
+        posts.appendChild(postBox);
+      };
+
+      // Load posts
+      $.ajax({
+        method: "GET",
+        url: "http://localhost:5000/posts",
+        success: function(data) {
+          for (var i = data.length - 1; i > -1; i--) {
+            var post = new Post(data[i]);
+            post.render();
+          }
+        }
+      });
+
+      //   publish.onclick = () => {
+      //     var settings = {
+      //       url: "/posts",
+      //       method: "POST",
+      //       headers: {
+      //         "Content-Type": "application/json",
+      //         "Cache-Control": "no-cache",
+      //         "cache-control": "no-cache"
+      //       },
+      //       data: JSON.stringify({
+      //         title: $("#title-box").val(),
+      //         description: $("#desc-box").val()
+      //       })
+      //     };
+
+      //     $.ajax(settings).done(function(response) {
+      //       console.log(response);
+      //     });
+      //   };
+    });
+  </script>
+</html>

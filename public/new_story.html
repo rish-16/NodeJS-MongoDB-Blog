@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>New Post</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  </head>
+
+  <style>
+    body,
+    html {
+      padding: 0;
+      margin: 0;
+      font-family: Avenir Next;
+      height: 100%;
+    }
+
+    #title {
+      width: 75%;
+      height: 40px;
+      font-family: Avenir Next;
+      margin: 10px auto;
+      font-size: 19px;
+      font-weight: bold;
+      text-indent: 15px;
+    }
+
+    #description {
+      resize: none;
+      width: 75%;
+      font-family: Avenir Next;
+      font-size: 15px;
+      min-height: 45px;
+      margin: 10px auto;
+    }
+
+    #publish {
+      width: 150px;
+      height: 45px;
+      margin: 0 auto;
+      font-family: Avenir Next;
+      font-size: 17px;
+      font-weight: bold;
+    }
+  </style>
+
+  <body>
+    <input type="text" id="title" placeholder="Title" />
+    <br />
+    <br />
+    <textarea id="description" placeholder="Enter your description"></textarea>
+    <br />
+    <br />
+    <button id="publish">Publish</button>
+  </body>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const title = document.getElementById("title");
+      const desc = document.getElementById("description");
+      const publish = document.getElementById("publish");
+
+      publish.onclick = () => {
+        var settings = {
+          url: "http://localhost:5000/posts",
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Cache-Control": "no-cache",
+            "cache-control": "no-cache"
+          },
+          data: JSON.stringify({
+            title: $("#title").val(),
+            description: $("#description").val()
+          })
+        };
+
+        $.ajax(settings).done(function(response) {
+          console.log(response);
+          window.location = "http://localhost:5000/home";
+        });
+      };
+    });
+  </script>
+</html>
