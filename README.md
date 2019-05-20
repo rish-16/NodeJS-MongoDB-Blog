@@ -7,8 +7,8 @@ A complete API for blog posts using a MongoDB AWS backend
 ### Downloading the template
 
 ```bash
-$ git clone https://github.com/rish-16/NodeJS-MongoDB-Blog
-$ cd NodeJS-MongoDB-Blog
+git clone https://github.com/rish-16/NodeJS-MongoDB-Blog
+cd NodeJS-MongoDB-Blog
 ```
 
 ### Connecting to MongoDB
@@ -35,7 +35,7 @@ _**Note:** Ensure your connection string has your username and password that mat
 To run the web app, you need to start a `localhost` server running on port 5000 (as found in `app.js`). To start the server, enter the following into your command line:
 
 ```bash
-$ npm start
+npm start
 ```
 
 As written in the `package.json` file, it should run the command, `nodemon app.js` behind the scenes.
