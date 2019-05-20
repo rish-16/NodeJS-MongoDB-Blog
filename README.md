@@ -61,3 +61,22 @@ To create a post, click the new button at the top left hand corner of the screen
 Type in a title and description and click **Publish**. It should redirect you to the home page and you should see your post there:
 
 ![Post](./Assets/post.png)
+
+**Delete** deletes the post from the MongoDB cluster collection.
+On clicking the title, it redirects you to a page with the JSON information about the post.
+
+---
+
+### Contributions
+
+If interested in adding on to the project, feel free to open a pull request! Things on the roadmap:
+
+1. Ability to add and delete comments on a post
+2. Responsive UI redesign
+3. Adding authentication and users
+
+---
+
+### License
+
+MIT
