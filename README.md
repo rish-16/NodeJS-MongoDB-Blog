@@ -1,4 +1,4 @@
-# NodeJS-MongoDB-Blog
+# NodeJS-MongoDB-Blog-Template
 
 A complete API for blog posts using a MongoDB AWS backend
 
