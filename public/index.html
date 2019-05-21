@@ -18,6 +18,10 @@
       font-family: Avenir Next;
     }
 
+    *:focus {
+      outline: none;
+    }
+
     #header {
       height: 80px;
       position: absolute;
@@ -33,6 +37,7 @@
 
     #header #logo {
       margin: auto 7%;
+      cursor: pointer;
     }
 
     #header #logo p {
@@ -41,21 +46,24 @@
       color: black;
     }
 
-    #header #new-post {
+    #header a {
+      color: white;
+      text-decoration: none;
+      margin: auto 7%;
+    }
+
+    #header a #new-post {
       width: 125px;
       height: 45px;
-      margin: auto 7%;
+      color: white;
+      cursor: pointer;
       background-color: #1dd1a1;
       font-family: Avenir Next;
       font-size: 17px;
       font-weight: bold;
       border-radius: 5px;
       box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
-    }
-
-    #header #new-post a {
-      color: white;
-      text-decoration: none;
+      border: none;
     }
 
     #posts {
@@ -115,9 +123,9 @@
   <body>
     <div id="header">
       <div id="logo">
-        <p>The MongoBlog</p>
+        <p onclick="window.location='/home'">The MongoBlog</p>
       </div>
-      <button id="new-post"><a href="/new-post">New +</a></button>
+      <a href="/new-post"><button id="new-post">New +</button></a>
     </div>
     <br />
     <div id="posts">
