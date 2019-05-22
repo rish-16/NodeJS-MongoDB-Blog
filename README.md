@@ -63,7 +63,9 @@ Type in a title and description and click **Publish**. It should redirect you to
 ![Post](./Assets/post.png)
 
 **Delete** deletes the post from the MongoDB cluster collection.
-On clicking the title, it redirects you to a page with the JSON information about the post.
+On clicking the title, it redirects you to the post page below:
+
+![Post](./Assets/article.png)
 
 ---
 
