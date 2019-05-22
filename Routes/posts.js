@@ -31,7 +31,11 @@ router.post("/", async (req, res) => {
 router.get("/:postID", async (req, res) => {
   try {
     const post = await Post.findById(req.params.postID);
-    res.json(post);
+    res.render(__dirname + "/views/post", {
+      title: post.title,
+      description: post.description
+    });
+    // res.json(post);
   } catch (err) {
     res.json({ message: err });
   }

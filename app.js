@@ -1,6 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
+const path = require("path");
 const cors = require("cors");
 require("dotenv/config");
 
@@ -9,6 +10,8 @@ const commentsRoute = require("./Routes/comments");
 
 const app = express();
 
+app.set("view engine", "pug");
+app.set("views", path.join(__dirname, "/Routes/views"));
 app.use(cors());
 app.use(bodyParser.json());
 app.use("/posts", postsRoute);
@@ -26,13 +29,13 @@ app.get("/new-post", (req, res) => {
   res.sendFile(__dirname + "/public/new_story.html");
 });
 
-// mongoose
-//   .connect(process.env.MONGO_CONNECT, {
-//     useNewUrlParser: true,
-//     useCreateIndex: true
-//   })
-//   .then(() => console.log("MongoDB connected"))
-//   .catch(err => console.log(err));
+mongoose
+  .connect(process.env.MONGO_CONNECT, {
+    useNewUrlParser: true,
+    useCreateIndex: true
+  })
+  .then(() => console.log("MongoDB connected"))
+  .catch(err => console.log(err));
 
 app.listen(5000, () => {
   console.log("Starting server");

@@ -137,43 +137,25 @@
 
     <div id="text-area">
       <div id="flex">
-        <div id="inner" contenteditable="true">
-          Title
-        </div>
+        <div id="inner" contenteditable="true"></div>
       </div>
 
       <div id="content-flex">
-        <div id="content-inner" contenteditable="true">Start typing...</div>
+        <div id="content-inner" contenteditable="true"></div>
       </div>
     </div>
   </body>
 
   <script>
     document.addEventListener("DOMContentLoaded", () => {
-      const title = document.getElementById("inner");
-      const desc = document.getElementById("content-inner");
-      const publish = document.getElementById("publish");
+      var title = "<%= title %>";
+      var desc = "<%= description %>";
 
-      publish.onclick = () => {
-        var settings = {
-          url: "http://localhost:5000/posts",
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "Cache-Control": "no-cache",
-            "cache-control": "no-cache"
-          },
-          data: JSON.stringify({
-            title: title.innerText,
-            description: desc.innerText
-          })
-        };
+      const titleDiv = document.getElementById("inner");
+      const descDiv = document.getElementById("content-inner");
 
-        $.ajax(settings).done(function(response) {
-          console.log(response);
-          window.location = "http://localhost:5000/home";
-        });
-      };
+      titleDiv.innerText = title;
+      descDiv.innerText = desc;
     });
   </script>
 </html>

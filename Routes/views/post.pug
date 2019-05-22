@@ -1,0 +1,22 @@
+html
+    head
+        title= title
+    style
+        include ./post.css
+    body
+        div#header
+            div#logo
+                p#logo-p= "The MongoBlog"
+        
+        div#text-area
+            div#flex
+                div#inner= title
+            
+            div#content-flex
+                div#content-inner= description
+    
+    script.
+        var logo = document.getElementById('logo-p')
+        logo.onclick = () => {
+            window.location = "/home"
+        }
