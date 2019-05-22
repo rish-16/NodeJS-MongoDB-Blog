@@ -16,7 +16,7 @@ router.get("/", async (req, res) => {
 router.post("/", async (req, res) => {
   var newPost = new Post({
     title: req.body.title,
-    description: req.body.description
+    content: req.body.content
   });
 
   try {
@@ -33,7 +33,7 @@ router.get("/:postID", async (req, res) => {
     const post = await Post.findById(req.params.postID);
     res.render(__dirname + "/views/post", {
       title: post.title,
-      description: post.description
+      content: post.content
     });
     // res.json(post);
   } catch (err) {

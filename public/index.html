@@ -33,6 +33,7 @@
       display: flex;
       flex-direction: row;
       justify-content: space-between;
+      z-index: 1000;
     }
 
     #header #logo {
@@ -154,7 +155,7 @@
       var Post = function(data) {
         this._id = data["_id"];
         this.title = data["title"];
-        this.desc = data["description"];
+        this.content = data["content"];
         this.date = data["date"];
       };
 
@@ -168,7 +169,7 @@
         titleNode.classList += "post-title";
 
         var descNode = document.createElement("p");
-        descNode.innerText = this.desc;
+        descNode.innerText = this.content;
         descNode.classList += "post-desc";
 
         var deleteNode = document.createElement("p");
