@@ -26,12 +26,14 @@ app.get("/new-post", (req, res) => {
   res.sendFile(__dirname + "/public/new_story.html");
 });
 
-mongoose
-  .connect(process.env.MONGO_CONNECT, {
-    useNewUrlParser: true,
-    useCreateIndex: true
-  })
-  .then(() => console.log("MongoDB connected"))
-  .catch(err => console.log(err));
+// mongoose
+//   .connect(process.env.MONGO_CONNECT, {
+//     useNewUrlParser: true,
+//     useCreateIndex: true
+//   })
+//   .then(() => console.log("MongoDB connected"))
+//   .catch(err => console.log(err));
 
-app.listen(5000);
+app.listen(5000, () => {
+  console.log("Starting server");
+});

@@ -32,6 +32,7 @@
       display: flex;
       flex-direction: row;
       justify-content: space-between;
+      z-index: 1000;
     }
 
     #header #logo {
@@ -70,23 +71,42 @@
       text-align: center;
     }
 
-    #text-area #title {
+    #text-area #flex {
       width: 100%;
-      min-height: 50px;
-      font-family: Avenir Next;
-      font-size: 25px;
-      margin: 20px 7%;
+      min-height: 30px;
+      margin: 20px auto;
+      text-align: left;
       font-weight: bold;
-      border: none;
-      border-left: 5px solid black;
-      padding-left: 10px;
-      background: rebeccapurple;
-      resize: none;
+      font-size: 25px;
+      background: none;
     }
 
-    #text-area #title::placeholder {
-      color: lightgray;
-      opacity: 1;
+    #text-area #inner {
+      width: 67%;
+      min-height: 45px;
+      line-height: 32px;
+      margin: 0 auto;
+      line-height: 30px;
+      border-left: 5px solid black;
+      padding: 10px 20px;
+    }
+
+    #text-area #content-flex {
+      width: 100%;
+      margin: 0 auto;
+      text-align: left;
+      font-size: 17px;
+      background: none;
+    }
+
+    #text-area #content-inner {
+      padding: 10px 20px;
+      width: 67%;
+      min-height: 150px;
+      line-height: 35px;
+      background: none;
+      margin: 0 auto;
+      border-left: 5px solid black;
     }
   </style>
 
@@ -116,39 +136,43 @@
     </div>
 
     <div id="text-area">
-      <textarea
-        type="text"
-        onkeyup="new do_resize(this)"
-        placeholder="Title"
-        id="title"
-      ></textarea>
+      <div id="flex">
+        <div id="inner" contenteditable="true">
+          Title
+        </div>
+      </div>
+
+      <div id="content-flex">
+        <div id="content-inner" contenteditable="true">Start typing...</div>
+      </div>
     </div>
   </body>
 
   <script>
     document.addEventListener("DOMContentLoaded", () => {
-      //   const title = document.getElementById("title");
-      //   const desc = document.getElementById("description");
-      //   const publish = document.getElementById("publish");
-      //   publish.onclick = () => {
-      //     var settings = {
-      //       url: "http://localhost:5000/posts",
-      //       method: "POST",
-      //       headers: {
-      //         "Content-Type": "application/json",
-      //         "Cache-Control": "no-cache",
-      //         "cache-control": "no-cache"
-      //       },
-      //       data: JSON.stringify({
-      //         title: $("#title").val(),
-      //         description: $("#description").val()
-      //       })
-      //     };
-      //     $.ajax(settings).done(function(response) {
-      //       console.log(response);
-      //       window.location = "http://localhost:5000/home";
-      //     });
-      //   };
+      const title = document.getElementById("inner");
+      const desc = document.getElementById("content-inner");
+      const publish = document.getElementById("publish");
+
+      publish.onclick = () => {
+        var settings = {
+          url: "http://localhost:5000/posts",
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Cache-Control": "no-cache",
+            "cache-control": "no-cache"
+          },
+          data: JSON.stringify({
+            title: $("#title").val(),
+            description: $("#description").val()
+          })
+        };
+
+        $.ajax(settings).done(function(response) {
+          window.location = "http://localhost:5000/home";
+        });
+      };
     });
   </script>
 </html>

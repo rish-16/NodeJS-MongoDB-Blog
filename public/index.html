@@ -186,8 +186,9 @@
 
         posts.appendChild(postBox);
       };
+    });
 
-      // Load posts
+    function loadPosts() {
       $.ajax({
         method: "GET",
         url: "http://localhost:5000/posts",
@@ -198,6 +199,8 @@
           }
         }
       });
-    });
+    }
+
+    loadPosts();
   </script>
 </html>
